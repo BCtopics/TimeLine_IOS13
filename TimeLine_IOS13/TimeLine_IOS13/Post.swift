@@ -26,8 +26,7 @@ class Post {
     //MARK: - Initializers
     
     init(photoData: Data?, timestamp: Date = Date(), comments: [Comment] = []) {
-        guard let photoData = photoData else { return }
-        
+
         self.photoData = photoData
         self.timestamp = timestamp
         self.comments = comments
