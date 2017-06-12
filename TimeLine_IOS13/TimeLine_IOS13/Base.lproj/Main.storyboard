@@ -13,17 +13,28 @@
         <scene sceneID="wvD-V9-6Wo">
             <objects>
                 <tableViewController id="MzR-Bu-i3w" customClass="PostListTableViewController" customModule="TimeLine_IOS13" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="zRq-Ib-hr7">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="252" sectionHeaderHeight="28" sectionFooterHeight="28" id="zRq-Ib-hr7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="tbq-cg-rPP">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="250" id="tbq-cg-rPP">
+                                <rect key="frame" x="0.0" y="28" width="375" height="250"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tbq-cg-rPP" id="cCU-86-l3g">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="249.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="b4n-Fw-4GB">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="249.5"/>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="b4n-Fw-4GB" secondAttribute="trailing" id="0y5-v4-sMV"/>
+                                        <constraint firstItem="b4n-Fw-4GB" firstAttribute="top" secondItem="cCU-86-l3g" secondAttribute="top" id="Ul1-eG-evs"/>
+                                        <constraint firstItem="b4n-Fw-4GB" firstAttribute="leading" secondItem="cCU-86-l3g" secondAttribute="leading" id="o3j-a1-1pb"/>
+                                        <constraint firstAttribute="bottom" secondItem="b4n-Fw-4GB" secondAttribute="bottom" id="yEv-6J-bjj"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <segue destination="KBA-Nf-smh" kind="show" id="6HN-4K-OFr"/>
