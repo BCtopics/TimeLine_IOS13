@@ -19,10 +19,43 @@ class AddPostTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
+    
+    //MARK: - IBOutlets
+    
+    @IBOutlet weak var captionTextField: UITextField!
+    @IBOutlet weak var selectImageButton: UIButton!
+    @IBOutlet weak var photoImageView: UIImageView!
+    
+    //MARK: - IBActions
+    
+    @IBAction func cancelButonTapped(_ sender: Any) {
+        
+        self.view.resignFirstResponder() //FIXME: - Is this how you get rid of the current view?
+        
+    }
+    
+    @IBAction func selectImageButtonTapped(_ sender: Any) {
+        
+        photoImageView.image = #imageLiteral(resourceName: "Kitten")
+        selectImageButton.setTitle("", for: .normal)
+        
+    }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBAction func addPostButtonTapped(_ sender: Any) {
+        
+        
+        if let photo = photoImageView.image, let caption = captionTextField.text {
+            PostController.shared.createPostWith(image: photo, caption: caption)
+        } else {
+            let alertController = UIAlertController(title: "Try Again", message: "Please make sure you've filled out all fields, then try again", preferredStyle: .alert)
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            
+            alertController.addAction(cancelAction)
+            
+            present(alertController, animated: true, completion: nil)
+            
+            }
     }
 
     // MARK: - Table view data source
