@@ -18,6 +18,7 @@
 		6B6777441EEF26FE009FBB2F /* SearchResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6777431EEF26FE009FBB2F /* SearchResultsTableViewController.swift */; };
 		6B6777481EEF27A1009FBB2F /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6777471EEF27A1009FBB2F /* Post.swift */; };
 		6B67774A1EEF298A009FBB2F /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6777491EEF298A009FBB2F /* Comment.swift */; };
+		6B67774C1EEF2A81009FBB2F /* PostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B67774B1EEF2A81009FBB2F /* PostController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		6B6777431EEF26FE009FBB2F /* SearchResultsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsTableViewController.swift; sourceTree = "<group>"; };
 		6B6777471EEF27A1009FBB2F /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		6B6777491EEF298A009FBB2F /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		6B67774B1EEF2A81009FBB2F /* PostController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +123,7 @@
 		6B6777461EEF278B009FBB2F /* ModelControllers */ = {
 			isa = PBXGroup;
 			children = (
+				6B67774B1EEF2A81009FBB2F /* PostController.swift */,
 			);
 			name = ModelControllers;
 			sourceTree = "<group>";
@@ -207,6 +210,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6B6777261EEF11A6009FBB2F /* AppDelegate.swift in Sources */,
+				6B67774C1EEF2A81009FBB2F /* PostController.swift in Sources */,
 				6B67773E1EEF14F8009FBB2F /* PostListTableViewController.swift in Sources */,
 				6B6777441EEF26FE009FBB2F /* SearchResultsTableViewController.swift in Sources */,
 				6B67774A1EEF298A009FBB2F /* Comment.swift in Sources */,
