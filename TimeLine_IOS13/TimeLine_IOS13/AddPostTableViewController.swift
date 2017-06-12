@@ -12,12 +12,6 @@ class AddPostTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
     //MARK: - IBOutlets
@@ -30,8 +24,7 @@ class AddPostTableViewController: UITableViewController {
     
     @IBAction func cancelButonTapped(_ sender: Any) {
         
-        self.view.resignFirstResponder() //FIXME: - Is this how you get rid of the current view?
-        
+        navigationController?.popViewController(animated: true)
     }
     
     @IBAction func selectImageButtonTapped(_ sender: Any) {
@@ -44,8 +37,11 @@ class AddPostTableViewController: UITableViewController {
     @IBAction func addPostButtonTapped(_ sender: Any) {
         
         
-        if let photo = photoImageView.image, let caption = captionTextField.text {
+        if let photo = photoImageView.image, let caption = captionTextField.text, !caption.isEmpty {
+            
             PostController.shared.createPostWith(image: photo, caption: caption)
+            navigationController?.popViewController(animated: true)
+            
         } else {
             let alertController = UIAlertController(title: "Try Again", message: "Please make sure you've filled out all fields, then try again", preferredStyle: .alert)
             
@@ -56,18 +52,6 @@ class AddPostTableViewController: UITableViewController {
             present(alertController, animated: true, completion: nil)
             
             }
-    }
-
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
     }
 
     /*

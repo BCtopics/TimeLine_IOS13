@@ -23,6 +23,11 @@ class PostDetailTableViewController: UITableViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.updateViews()
+    }
+    
     //MARK: - IBOutlets
     
     @IBOutlet weak var postImageView: UIImageView!
@@ -47,7 +52,7 @@ class PostDetailTableViewController: UITableViewController {
             
             PostController.shared.addComment(toPost: post, text: text)
             
-            self.tableView.reloadData()
+            self.updateViews()
         }
         // ^^Creates the new comment from the text we put in the textfield
         
@@ -86,15 +91,17 @@ class PostDetailTableViewController: UITableViewController {
         return post.comments.count //FIXME: - Is this right?
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "commentCell", for: indexPath)
 
-        // Configure the cell...
+        let comment = self.post?.comments[indexPath.row]
+        cell.textLabel?.text = comment?.text
+        cell.detailTextLabel?.text = "\(comment?.timestamp)" //FIXME: - Fix time
 
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.

@@ -18,8 +18,9 @@ class PostTableViewCell: UITableViewCell {
     
     func updateViews() {
         guard let post = post else { return }
-        
-        self.imageView?.image = post.photo
+        self.postImageView.image = post.photo
     }
+    
+    @IBOutlet weak var postImageView: UIImageView!
     
 }

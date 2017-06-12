@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="postCell" rowHeight="326" id="tbq-cg-rPP">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="postCell" rowHeight="326" id="tbq-cg-rPP" customClass="PostTableViewCell" customModule="TimeLine_IOS13" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="326"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tbq-cg-rPP" id="cCU-86-l3g">
@@ -38,6 +38,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="postImageView" destination="b4n-Fw-4GB" id="AbF-Dd-280"/>
                                     <segue destination="5hv-ED-yhK" kind="show" identifier="toDetailView" id="hwL-SC-rVi"/>
                                 </connections>
                             </tableViewCell>
@@ -204,14 +205,12 @@
                             </tableViewCell>
                         </prototypes>
                         <connections>
-                            <outlet property="dataSource" destination="5hv-ED-yhK" id="jin-GZ-BXh"/>
-                            <outlet property="delegate" destination="5hv-ED-yhK" id="d3Y-OH-v7B"/>
+                            <outlet property="dataSource" destination="5hv-ED-yhK" id="qFi-yZ-kmv"/>
+                            <outlet property="delegate" destination="5hv-ED-yhK" id="7fg-G0-gfa"/>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Post Detail" id="nUT-gw-PvX"/>
                     <connections>
-                        <outlet property="followPostButton" destination="V9W-hz-WeH" id="uNS-BU-Ai1"/>
-                        <outlet property="imageView" destination="PW0-lT-KaD" id="fqR-mT-Uah"/>
                         <outlet property="postImageView" destination="PW0-lT-KaD" id="1PO-Qj-N0c"/>
                     </connections>
                 </tableViewController>
@@ -301,7 +300,6 @@
                                                     <state key="normal" title="Add Post"/>
                                                     <connections>
                                                         <action selector="addPostButtonTapped:" destination="PCl-OY-L6z" eventType="touchUpInside" id="HPa-GN-y3I"/>
-                                                        <action selector="addPostTapped:" destination="PCl-OY-L6z" eventType="touchUpInside" id="PH1-L9-HBk"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -340,6 +338,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="XwB-Ik-90l"/>
+        <segue reference="zLk-T1-Myb"/>
     </inferredMetricsTieBreakers>
 </document>
