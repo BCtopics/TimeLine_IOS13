@@ -17,28 +17,73 @@ class PostDetailTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        // Dynamic Heights
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 40
+        
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    //MARK: - IBOutlets
+    
+    @IBOutlet weak var postImageView: UIImageView!
+    
+    //MARK: - IBActions
+    
+    @IBAction func commentButtonTapped(_ sender: Any) {
+        
+        var alertTextField: UITextField?
+        
+        let alertController = UIAlertController(title: "Add Comment", message: "Please enter your comment", preferredStyle: .alert)
+        
+        alertController.addTextField { (textField) in
+            alertTextField = textField
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let addAction = UIAlertAction(title: "Add", style: .default) { _ in
+            
+            guard let text = alertTextField?.text, !text.isEmpty else { return }
+            guard let post = self.post else { return }
+            
+            PostController.shared.addComment(toPost: post, text: text)
+            
+            self.tableView.reloadData()
+        }
+        // ^^Creates the new comment from the text we put in the textfield
+        
+        alertController.addAction(addAction)
+        alertController.addAction(cancelAction)
+        
+        present(alertController, animated: true, completion: nil)
+        
+    }
+    
+    @IBAction func shareButtonTapped(_ sender: Any) {
+        
+        
+        
+    }
+    
+    @IBAction func followButtonTapped(_ sender: Any) {
+        
+        
+        
+    }
+    
+    
+    //MARK: - Update
+    
+    func updateViews() {
+        guard let post = post else { return }
+        postImageView.image = post.photo
+        self.tableView.reloadData()
     }
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        guard let post = post else { return 0 }
+        return post.comments.count //FIXME: - Is this right?
     }
 
     /*
