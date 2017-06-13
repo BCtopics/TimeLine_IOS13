@@ -90,16 +90,24 @@ class AddPostTableViewController: UITableViewController, UIImagePickerController
             
             }
     }
-
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
+    
+    // MARK: UIImagePickerControllerDelegate
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        picker.dismiss(animated: true, completion: nil)
+        
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            
+            delegate?.photoSelectViewControllerSelected(image)
+            selectImageButton.setTitle("", for: UIControlState())
+            photoImageView.image = image
+        }
     }
-    */
+    
+    // MARK: Properties
+    
+    weak var delegate: PhotoSelectViewControllerDelegate?
+    
 
     /*
     // Override to support conditional editing of the table view.
@@ -146,4 +154,9 @@ class AddPostTableViewController: UITableViewController, UIImagePickerController
     }
     */
 
+}
+
+protocol PhotoSelectViewControllerDelegate: class {
+    
+    func photoSelectViewControllerSelected(_ image: UIImage)
 }
