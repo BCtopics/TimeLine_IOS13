@@ -90,9 +90,8 @@
 		6B6777241EEF11A6009FBB2F /* TimeLine_IOS13 */ = {
 			isa = PBXGroup;
 			children = (
-				6B8997951EF0A1A3008225DF /* Managers */,
-				6B6777391EEF11F7009FBB2F /* TimeLine_IOS13.entitlements */,
 				6B6777251EEF11A6009FBB2F /* AppDelegate.swift */,
+				6B8997951EF0A1A3008225DF /* Managers */,
 				6B29A0B51EF0519200659634 /* Protocols */,
 				6B6777461EEF278B009FBB2F /* ModelControllers */,
 				6B6777451EEF2784009FBB2F /* Models */,
@@ -106,6 +105,7 @@
 		6B6777371EEF11B5009FBB2F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				6B6777391EEF11F7009FBB2F /* TimeLine_IOS13.entitlements */,
 				6B67772C1EEF11A6009FBB2F /* Assets.xcassets */,
 				6B67772E1EEF11A6009FBB2F /* LaunchScreen.storyboard */,
 				6B6777311EEF11A6009FBB2F /* Info.plist */,
