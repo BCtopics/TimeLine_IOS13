@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6B29A0B71EF051AA00659634 /* SearchableRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B29A0B61EF051AA00659634 /* SearchableRecord.swift */; };
 		6B6777261EEF11A6009FBB2F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6777251EEF11A6009FBB2F /* AppDelegate.swift */; };
 		6B67772B1EEF11A6009FBB2F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B6777291EEF11A6009FBB2F /* Main.storyboard */; };
 		6B67772D1EEF11A6009FBB2F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6B67772C1EEF11A6009FBB2F /* Assets.xcassets */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6B29A0B61EF051AA00659634 /* SearchableRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchableRecord.swift; sourceTree = "<group>"; };
 		6B6777221EEF11A6009FBB2F /* TimeLine_IOS13.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimeLine_IOS13.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B6777251EEF11A6009FBB2F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6B67772A1EEF11A6009FBB2F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -53,6 +55,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6B29A0B51EF0519200659634 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				6B29A0B61EF051AA00659634 /* SearchableRecord.swift */,
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
 		6B6777191EEF11A6009FBB2F = {
 			isa = PBXGroup;
 			children = (
@@ -75,6 +85,7 @@
 			children = (
 				6B6777391EEF11F7009FBB2F /* TimeLine_IOS13.entitlements */,
 				6B6777251EEF11A6009FBB2F /* AppDelegate.swift */,
+				6B29A0B51EF0519200659634 /* Protocols */,
 				6B6777461EEF278B009FBB2F /* ModelControllers */,
 				6B6777451EEF2784009FBB2F /* Models */,
 				6B67774D1EEF2EF0009FBB2F /* Views */,
@@ -220,6 +231,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B29A0B71EF051AA00659634 /* SearchableRecord.swift in Sources */,
 				6B6777261EEF11A6009FBB2F /* AppDelegate.swift in Sources */,
 				6B67774C1EEF2A81009FBB2F /* PostController.swift in Sources */,
 				6B67773E1EEF14F8009FBB2F /* PostListTableViewController.swift in Sources */,
@@ -394,6 +406,7 @@
 				6B6777361EEF11A6009FBB2F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

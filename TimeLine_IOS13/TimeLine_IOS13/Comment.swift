@@ -26,3 +26,12 @@ class Comment {
     }
     
 }
+
+//MARK: - SearchableRecord Functions
+
+extension Comment: SearchableRecord {
+    func matches(searchTerm: String) -> Bool {
+        return text.contains(searchTerm)
+    }
+}
+
