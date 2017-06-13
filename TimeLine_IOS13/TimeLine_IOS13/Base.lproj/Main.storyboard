@@ -335,6 +335,9 @@
                                         <constraint firstAttribute="trailing" secondItem="fuA-Ty-TUE" secondAttribute="trailing" id="ir9-cW-Osd"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="5hv-ED-yhK" kind="show" identifier="toPostDetailFromSearch" id="7Bz-yV-K46"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -345,10 +348,11 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y22-KA-5uC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="396" y="1588"/>
+            <point key="canvasLocation" x="2196" y="1151"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="zLk-T1-Myb"/>
+        <segue reference="7Bz-yV-K46"/>
     </inferredMetricsTieBreakers>
 </document>

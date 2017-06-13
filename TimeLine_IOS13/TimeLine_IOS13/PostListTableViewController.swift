@@ -106,11 +106,26 @@ class PostListTableViewController: UITableViewController, UISearchResultsUpdatin
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
+        // From Initial View
         if segue.identifier == "toDetailView" {
             if let detailVC = segue.destination as? PostDetailTableViewController {
                 guard let index = self.tableView.indexPathForSelectedRow?.row else { NSLog("index invalid"); return }
                 let post = PostController.shared.posts[index]
                 detailVC.post = post
+            }
+        }
+        
+        // From Initial View, BUT using a searchTerm
+        if segue.identifier == "toPostDetailFromSearch" {
+            if let detailViewController = segue.destination as? PostDetailTableViewController,
+                let sender = sender as? PostTableViewCell,
+                let selectedIndexPath = (searchController?.searchResultsController as? SearchResultsTableViewController)?.tableView.indexPath(for: sender),
+                let searchTerm = searchController?.searchBar.text?.lowercased() {
+                
+                let posts = PostController.shared.posts.filter({ $0.matches(searchTerm: searchTerm) })
+                let post = posts[selectedIndexPath.row]
+                
+                detailViewController.post = post
             }
         }
         
