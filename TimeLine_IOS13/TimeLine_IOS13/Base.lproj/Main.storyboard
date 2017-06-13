@@ -188,7 +188,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gE9-rB-R19" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2196" y="406"/>
+            <point key="canvasLocation" x="1866" y="134"/>
         </scene>
         <!--Add Post-->
         <scene sceneID="Sab-R3-VC9">
@@ -348,7 +348,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y22-KA-5uC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2196" y="1151"/>
+            <point key="canvasLocation" x="1865" y="-566"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
