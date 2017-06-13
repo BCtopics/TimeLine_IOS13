@@ -22,6 +22,8 @@
 		6B67774C1EEF2A81009FBB2F /* PostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B67774B1EEF2A81009FBB2F /* PostController.swift */; };
 		6B67774F1EEF2F09009FBB2F /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B67774E1EEF2F09009FBB2F /* PostTableViewCell.swift */; };
 		6B8997941EF09206008225DF /* PhotoSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8997931EF09206008225DF /* PhotoSelectViewController.swift */; };
+		6B8997971EF0A1BE008225DF /* CloudKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8997961EF0A1BE008225DF /* CloudKitManager.swift */; };
+		6B8997991EF0A336008225DF /* CloudKitSyncable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8997981EF0A336008225DF /* CloudKitSyncable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +45,8 @@
 		6B67774B1EEF2A81009FBB2F /* PostController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostController.swift; sourceTree = "<group>"; };
 		6B67774E1EEF2F09009FBB2F /* PostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		6B8997931EF09206008225DF /* PhotoSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectViewController.swift; sourceTree = "<group>"; };
+		6B8997961EF0A1BE008225DF /* CloudKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudKitManager.swift; sourceTree = "<group>"; };
+		6B8997981EF0A336008225DF /* CloudKitSyncable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudKitSyncable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +65,7 @@
 			isa = PBXGroup;
 			children = (
 				6B29A0B61EF051AA00659634 /* SearchableRecord.swift */,
+				6B8997981EF0A336008225DF /* CloudKitSyncable.swift */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -85,6 +90,7 @@
 		6B6777241EEF11A6009FBB2F /* TimeLine_IOS13 */ = {
 			isa = PBXGroup;
 			children = (
+				6B8997951EF0A1A3008225DF /* Managers */,
 				6B6777391EEF11F7009FBB2F /* TimeLine_IOS13.entitlements */,
 				6B6777251EEF11A6009FBB2F /* AppDelegate.swift */,
 				6B29A0B51EF0519200659634 /* Protocols */,
@@ -151,6 +157,14 @@
 				6B67774E1EEF2F09009FBB2F /* PostTableViewCell.swift */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		6B8997951EF0A1A3008225DF /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				6B8997961EF0A1BE008225DF /* CloudKitManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -236,7 +250,9 @@
 			files = (
 				6B29A0B71EF051AA00659634 /* SearchableRecord.swift in Sources */,
 				6B6777261EEF11A6009FBB2F /* AppDelegate.swift in Sources */,
+				6B8997971EF0A1BE008225DF /* CloudKitManager.swift in Sources */,
 				6B67774C1EEF2A81009FBB2F /* PostController.swift in Sources */,
+				6B8997991EF0A336008225DF /* CloudKitSyncable.swift in Sources */,
 				6B67773E1EEF14F8009FBB2F /* PostListTableViewController.swift in Sources */,
 				6B6777441EEF26FE009FBB2F /* SearchResultsTableViewController.swift in Sources */,
 				6B67774A1EEF298A009FBB2F /* Comment.swift in Sources */,
