@@ -96,34 +96,6 @@
             </objects>
             <point key="canvasLocation" x="396" y="893"/>
         </scene>
-        <!--Search Results Table View Controller-->
-        <scene sceneID="6sR-Cr-YEJ">
-            <objects>
-                <tableViewController id="Irk-ym-rmu" customClass="SearchResultsTableViewController" customModule="TimeLine_IOS13" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="0cQ-Q8-CB1">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchPostCell" id="9gR-Ev-j8G">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9gR-Ev-j8G" id="tmh-hg-8nM">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="Irk-ym-rmu" id="Hen-M1-qna"/>
-                            <outlet property="delegate" destination="Irk-ym-rmu" id="mcr-EI-4f3"/>
-                        </connections>
-                    </tableView>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="pX4-eL-ugR" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="394" y="1583"/>
-        </scene>
         <!--Post Detail-->
         <scene sceneID="bTZ-WD-Lj3">
             <objects>
@@ -335,6 +307,45 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BWz-f9-7cS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1116" y="893"/>
+        </scene>
+        <!--Search Results Table View Controller-->
+        <scene sceneID="t5d-nE-Wp7">
+            <objects>
+                <tableViewController storyboardIdentifier="SearchResultsTableViewController" id="ShB-Qp-hPf" customClass="SearchResultsTableViewController" customModule="TimeLine_IOS13" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="300" sectionHeaderHeight="28" sectionFooterHeight="28" id="Yw6-CL-QCg">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchPostCell" rowHeight="300" id="1Sm-d9-7Od" customClass="PostTableViewCell" customModule="TimeLine_IOS13" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="300"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1Sm-d9-7Od" id="Yue-7U-9OT">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="299.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fuA-Ty-TUE">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="300"/>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="fuA-Ty-TUE" secondAttribute="bottom" id="PTG-zX-TPp"/>
+                                        <constraint firstItem="fuA-Ty-TUE" firstAttribute="top" secondItem="Yue-7U-9OT" secondAttribute="top" id="VKh-PP-1qh"/>
+                                        <constraint firstItem="fuA-Ty-TUE" firstAttribute="leading" secondItem="Yue-7U-9OT" secondAttribute="leading" id="XLd-Pe-Cry"/>
+                                        <constraint firstAttribute="trailing" secondItem="fuA-Ty-TUE" secondAttribute="trailing" id="ir9-cW-Osd"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="ShB-Qp-hPf" id="Kdn-Nw-hek"/>
+                            <outlet property="delegate" destination="ShB-Qp-hPf" id="pd2-hq-17c"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Y22-KA-5uC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="396" y="1588"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

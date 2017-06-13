@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PostListTableViewController: UITableViewController {
+class PostListTableViewController: UITableViewController, UISearchResultsUpdating {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +35,37 @@ class PostListTableViewController: UITableViewController {
         return cell
     }
     
-
+    //MARK: - SearchResultsController Functions
+    
+    private func setUpSearchController() {
+        
+        let resultsController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SearchResultsTableViewController")
+        
+        searchController = UISearchController(searchResultsController: resultsController)
+        searchController?.searchResultsUpdater = self
+        searchController?.searchBar.sizeToFit()
+        searchController?.hidesNavigationBarDuringPresentation = true
+        tableView.tableHeaderView = searchController?.searchBar
+        
+        definesPresentationContext = true
+    }
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        
+        if let resultsViewController = searchController.searchResultsController as? SearchResultsTableViewController,
+            let searchTerm = searchController.searchBar.text?.lowercased() {
+            
+            let posts = PostController.shared.posts
+            let filteredPosts = posts.filter { $0.matches(searchTerm: searchTerm) }.map { $0 as SearchableRecord }
+            resultsViewController.resultsArray = filteredPosts
+            resultsViewController.tableView.reloadData()
+        }
+    }
+    
+    //MARK: - Properties
+    
+    var searchController: UISearchController?
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
