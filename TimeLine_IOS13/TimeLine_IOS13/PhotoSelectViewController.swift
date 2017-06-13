@@ -74,8 +74,6 @@ class PhotoSelectViewController: UIViewController, UIImagePickerControllerDelega
         }
     }
     
-    
-    
     // MARK: Properties
     
     weak var delegate: PhotoSelectViewControllerDelegate?
