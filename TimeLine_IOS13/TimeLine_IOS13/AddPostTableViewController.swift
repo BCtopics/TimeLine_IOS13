@@ -8,17 +8,17 @@
 
 import UIKit
 
-class AddPostTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class AddPostTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
+    var image: UIImage?
+    
     //MARK: - IBOutlets
     
     @IBOutlet weak var captionTextField: UITextField!
-    @IBOutlet weak var selectImageButton: UIButton!
-    @IBOutlet weak var photoImageView: UIImageView!
     
     //MARK: - IBActions
     
@@ -26,55 +26,10 @@ class AddPostTableViewController: UITableViewController, UIImagePickerController
         
         navigationController?.popViewController(animated: true)
     }
-    
-    @IBAction func selectImageButtonTapped(_ sender: Any) {
-        
-        // Create ImagePicker and set the delegate to be self
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        
-        // Create AlertController
-        let actionSheet = UIAlertController(title: "Select Image", message: "Please select an image", preferredStyle: .actionSheet)
-        
-        // Create Actions
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        
-        let photoLibraryAction = UIAlertAction(title: "Photo Library", style: .default) { (_) in
-            imagePicker.sourceType = .photoLibrary
-            self.present(imagePicker, animated: true, completion: nil)
-        }
-        
-        let cameraAction = UIAlertAction(title: "Camera", style: .default) { (_) in
-            imagePicker.sourceType = .camera
-            self.present(imagePicker, animated: true, completion: nil)
-        }
-        
-        let savedPhotosAction = UIAlertAction(title: "Saved Photos", style: .default) { (_) in
-            imagePicker.sourceType = .savedPhotosAlbum
-            self.present(imagePicker, animated: true, completion: nil)
-        }
-        
-        // Add the actions
-        actionSheet.addAction(cancelAction)
-        if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            actionSheet.addAction(cameraAction)
-        }
-        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
-            actionSheet.addAction(photoLibraryAction)
-        }
-        if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum) {
-            actionSheet.addAction(savedPhotosAction)
-        }
-        present(actionSheet, animated: true, completion: nil)
-
-        selectImageButton.setTitle("", for: .normal)
-        
-    }
 
     @IBAction func addPostButtonTapped(_ sender: Any) {
         
-        
-        if let photo = photoImageView.image, let caption = captionTextField.text, !caption.isEmpty {
+        if let photo = image, let caption = captionTextField.text, !caption.isEmpty {
             
             PostController.shared.createPostWith(image: photo, caption: caption)
             navigationController?.popViewController(animated: true)
@@ -91,23 +46,16 @@ class AddPostTableViewController: UITableViewController, UIImagePickerController
             }
     }
     
-    // MARK: UIImagePickerControllerDelegate
+    // MARK: Navigation
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        picker.dismiss(animated: true, completion: nil)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+        if segue.identifier == "embedPhotoSelect" {
             
-            delegate?.photoSelectViewControllerSelected(image)
-            selectImageButton.setTitle("", for: UIControlState())
-            photoImageView.image = image
+            let embedViewController = segue.destination as? PhotoSelectViewController
+            embedViewController?.delegate = self
         }
     }
-    
-    // MARK: Properties
-    
-    weak var delegate: PhotoSelectViewControllerDelegate?
-    
 
     /*
     // Override to support conditional editing of the table view.
@@ -156,7 +104,10 @@ class AddPostTableViewController: UITableViewController, UIImagePickerController
 
 }
 
-protocol PhotoSelectViewControllerDelegate: class {
+extension AddPostTableViewController: PhotoSelectViewControllerDelegate {
     
-    func photoSelectViewControllerSelected(_ image: UIImage)
+    func photoSelectViewControllerSelected(_ image: UIImage) {
+        
+        self.image = image
+    }
 }
