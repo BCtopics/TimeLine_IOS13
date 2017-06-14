@@ -22,7 +22,7 @@ class Comment: CloudKitSyncable {
     
     let text: String
     let timestamp: Date
-    let post: Post?
+    var post: Post?
     
     //MARK: - Initializers
     

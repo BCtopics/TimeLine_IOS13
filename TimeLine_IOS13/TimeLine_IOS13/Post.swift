@@ -15,6 +15,7 @@ class Post: CloudKitSyncable {
     
     static let kTimestamp = "timestamp"
     static let kPhotoData = "photoData"
+    static let kType = "post"
     
     //MARK: - Internal Properties
     

@@ -84,6 +84,54 @@ class PostController {
         post.comments.append(comment)
     }
     
+    //MARK: - FetchFunction
+    
+    func fetchNewRecordsOf(type: String, completion: @escaping (() -> Void) = { _ in }) {
+        
+        // Get the CKReferences of already fetched posts, this way we aren't fetching anything we don't need to
+        var refExcluded = [CKReference]()
+        refExcluded = self.syncedRecordsOf(type: type).flatMap { $0.cloudKitReference }
+        
+        // Create predicate for FetchRequest
+        var predicate: NSPredicate!
+        predicate = NSPredicate(format: "NOT(recordID IN %@)", argumentArray: [refExcluded])
+        
+        // If we haven't fetched any posts, fetch them all
+        if refExcluded.isEmpty {
+            predicate = NSPredicate(value: true)
+        }
+        
+        cloudKitManager.fetchRecordsWithType(type, predicate: predicate, recordFetchedBlock: { (record) in
+            
+            switch type {
+            case Post.kType:
+                if let post = Post(record: record) {
+                    self.posts.append(post)
+                }
+            case Comment.kType:
+                guard let postReference = record[Comment.kPost] as? CKReference,
+                    let postIndex = self.posts.index(where: { $0.cloudKitRecordID == postReference.recordID }),
+                    let comment = Comment(record: record) else { return }
+                let post = self.posts[postIndex]
+                post.comments.append(comment)
+                comment.post = post
+            default: return
+                }
+            
+            
+        }) { (record, error) in
+            
+            if let error = error {
+                NSLog("Failed to fetch records from cloudkit \(error.localizedDescription)")
+                return
+            }
+            completion()
+        }
+        
+    }
+    
+    
+    
 }
 
 
