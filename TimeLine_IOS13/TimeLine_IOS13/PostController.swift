@@ -130,6 +130,52 @@ class PostController {
         
     }
     
+    //MARK: - Push Changes To CloudKit
+    
+    func pushChangesToCloudKit(completion: @escaping (Bool, Error?) -> Void) {
+        
+        // Get unsavedPosts
+        let unsavedPosts = unsyncedRecordsOf(type: Post.kType) as? [Post] ?? []
+        
+        // Get unsavedComments
+        let unsavedComments = unsyncedRecordsOf(type: Comment.kType) as? [Comment] ?? []
+        
+        // Create an empty dictionary variable to hold these objecs.
+        var unsavedObjectsByRecord = [CKRecord: CloudKitSyncable]()
+        
+        // Go through everything in the unsavedPosts and create a CKRecord for it, Then add that to the unsavedObjectsByRecord
+        for post in unsavedPosts {
+            let newRecord = CKRecord(post)
+            unsavedObjectsByRecord[newRecord] = post
+        }
+        
+        // Go through everything in the unsavedComments and create a CKRecord for it, Then add that to the unsavedObjectsByRecord
+        for comment in unsavedComments {
+            let newRecord = CKRecord(comment)
+            unsavedObjectsByRecord[newRecord] = comment
+        }
+        
+        // These are the unsavedRecords of all the objects, dictionaries keys which lead to CKRecord Objects.
+        let unsavedRecords = Array(unsavedObjectsByRecord.keys)
+        
+        cloudKitManager.saveRecords(unsavedRecords, perRecordCompletion: { (record, error) in
+            
+            if let error = error {
+                NSLog("Error Saving CloudKitRecords. \(error.localizedDescription)")
+                return
+            }
+            
+            // Check that the record is there, then make that records id equal to the actual recordID.
+            guard let record = record else { return }
+            unsavedObjectsByRecord[record]?.cloudKitRecordID = record.recordID
+            
+        }) { (record, error) in
+            
+            let success = record != nil
+            completion(success, error)
+            
+        }
+    }
     
     
 }
