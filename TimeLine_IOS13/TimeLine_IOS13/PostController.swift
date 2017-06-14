@@ -140,7 +140,6 @@ class PostController {
             default: return
                 }
             
-            
         }) { (record, error) in
             
             if let error = error {

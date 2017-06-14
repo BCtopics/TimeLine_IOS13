@@ -14,6 +14,8 @@ class AddPostTableViewController: UITableViewController {
         super.viewDidLoad()
     }
     
+    //MARK: - Properties
+    
     var image: UIImage?
     
     //MARK: - IBOutlets

@@ -16,18 +16,16 @@ class PostListTableViewController: UITableViewController, UISearchResultsUpdatin
         
         let nc = NotificationCenter.default
         nc.addObserver(self, selector: #selector(refresh), name: PostController.PostsChangedNotification, object: nil)
-        
     }
     
-    func refresh() {
-        self.tableView.reloadData()
-    }
-
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tableView.reloadData()
     }
     
+    func refresh() {
+        self.tableView.reloadData()
+    }
     
     //MARK: - IBActions
     
