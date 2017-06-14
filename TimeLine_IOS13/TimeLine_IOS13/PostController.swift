@@ -27,7 +27,14 @@ class PostController {
     
     var isSyncing: Bool = false
     let cloudKitManager = CloudKitManager()
-    var posts: [Post] = []
+    var posts: [Post] = [] {
+        didSet {
+            DispatchQueue.main.async {
+                let nc = NotificationCenter.default
+                nc.post(name: PostController.PostsChangedNotification, object: self)
+            }
+        }
+    }
     
     var comments: [Comment] {
         return posts.flatMap { $0.comments }
@@ -90,7 +97,13 @@ class PostController {
             comment.cloudKitRecordID = recordID
         }
         
+        
         post.comments.append(comment)
+        
+        DispatchQueue.main.async {
+            let nc = NotificationCenter.default
+            nc.post(name: PostController.PostCommentsChangedNotification, object: post)
+        }
     }
     
     //MARK: - FetchFunction
@@ -232,7 +245,13 @@ class PostController {
         
     }
     
-    
+}
+
+//MARK: - Notifications
+
+extension PostController {
+    static let PostsChangedNotification = Notification.Name("PostsChangedNotification")
+    static let PostCommentsChangedNotification = Notification.Name("PostCommentsChangedNotification")
 }
 
 
