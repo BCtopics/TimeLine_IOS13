@@ -12,12 +12,35 @@ class PostListTableViewController: UITableViewController, UISearchResultsUpdatin
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.requestFullSync()
+        
+        let nc = NotificationCenter.default
+        nc.addObserver(self, selector: #selector(refresh), name: PostController.PostsChangedNotification, object: nil)
+        
+    }
+    
+    func refresh() {
+        self.tableView.reloadData()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tableView.reloadData()
     }
+    
+    
+    //MARK: - IBActions
+    
+    @IBAction func refreshPulled(_ sender: Any) {
+        
+        self.requestFullSync() {
+            self.refreshControl?.endRefreshing()
+        }
+        
+    }
+    
+    
+    
     
     // MARK: - Table view data source
 
@@ -131,7 +154,18 @@ class PostListTableViewController: UITableViewController, UISearchResultsUpdatin
         
     }
     
-
+    //MARK: - Sync With CloudKit
+    
+    private func requestFullSync(_ completion: (() -> Void)? = nil) {
+        
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        
+        PostController.shared.peformFullSync { () -> (Void) in
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
+            completion?() //FIXME: - Why Do I have to unwrapp this / Is this optional?
+        }
+    }
+    
 }
 
 
