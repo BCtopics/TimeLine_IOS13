@@ -11,12 +11,21 @@ import CloudKit
 
 class PostController {
     
+    //MARK: - Initializers
+    
+    init() {
+        self.peformFullSync {
+            //FIXME: - Get rid of this empty area.
+        }
+    }
+    
     //MARK: - Shared Instances
     
     static let shared = PostController()
     
     //MARK: - Properties
     
+    var isSyncing: Bool = false
     let cloudKitManager = CloudKitManager()
     var posts: [Post] = []
     
@@ -171,10 +180,56 @@ class PostController {
             
         }) { (record, error) in
             
+            // As long as record isn't nil success will be true, pass back through the completion true, and nil if succeds
             let success = record != nil
             completion(success, error)
             
         }
+    }
+    
+    //MARK: - Perform Full Sync Function
+    
+    func peformFullSync(completion: @escaping () -> (Void)) {
+        
+        // Make sure nothing is currenty syncing, if it's not set isSyncing to true and begin sync proccess
+        if isSyncing == true {
+            NSLog("Syncing is already in progress")
+            completion()
+            return
+        } else {
+            isSyncing = true
+        }
+        
+        // Push Changes to cloudKit
+        self.pushChangesToCloudKit { (success, error) in
+            
+            if let error = error {
+                NSLog("Error pushing changes to cloudkit \(error.localizedDescription)")
+                return
+            }
+            
+            if success {
+                
+                // Fetch New Post Records From CloudKit
+                self.fetchNewRecordsOf(type: Post.kType, completion: {
+                    
+                    // Fetch New Commment Records From CloudKit
+                    self.fetchNewRecordsOf(type: Comment.kType, completion: {
+                        
+                        self.isSyncing = false
+                        completion()
+                        
+                    })
+                })
+                NSLog("Pushing Changes to cloudkit was a success!")
+                return
+            } else {
+                NSLog("Success was not true for pushingtocloudkit function")
+                return
+            }
+            
+        }
+        
     }
     
     
