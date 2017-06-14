@@ -17,6 +17,9 @@ class PostDetailTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let nc = NotificationCenter.default
+        nc.addObserver(self, selector: #selector(postCommentsChanged(_:)), name: PostController.PostCommentsChangedNotification, object: nil)
+        
         // Dynamic Heights
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 40
@@ -26,6 +29,12 @@ class PostDetailTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.updateViews()
+    }
+    
+    func postCommentsChanged(_ notification: Notification) {
+        guard let notificationPost = notification.object as? Post,
+            let post = post, notificationPost === post else { return } // Not our post
+        updateViews()
     }
     
     //MARK: - IBOutlets
