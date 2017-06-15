@@ -283,7 +283,43 @@ class PostController {
         }
     }
     
+    // Remove Subscription From a Post
+    func removeSubscriptionTo(commentsForPost post: Post,
+                              completion: @escaping ((_ success: Bool, _ error: Error?) -> Void) = { _,_ in })  {
+        
+        guard let subscriptionID = post.cloudKitRecordID?.recordName else {
+            completion(true, nil)
+            return
+        }
+        
+        cloudKitManager.unsubscribe(subscriptionID) { (subscriptionID, error) in
+            let success = subscriptionID != nil && error == nil
+            completion(success, error)
+        }
+    }
     
+    // Toggle the subcription On/Off
+    func toggleSubscriptionTo(commentsForPost post: Post,
+                              completion: @escaping ((_ success: Bool, _ isSubscribed: Bool, _ error: Error?) -> Void) = { _,_,_ in }) {
+        
+        guard let subscriptionID = post.cloudKitRecordID?.recordName else {
+            completion(false, false, nil)
+            return
+        }
+        
+        cloudKitManager.fetchSubscription(subscriptionID) { (subscription, error) in
+            
+            if subscription != nil {
+                self.removeSubscriptionTo(commentsForPost: post) { (success, error) in
+                    completion(success, false, error)
+                }
+            } else {
+                self.addSubscriptionTo(commentsForPost: post, alertBody: "Someone has commented on a post that you have followed.") { (success, error) in
+                    completion(success, true, error)
+                }
+            }
+        }
+    }
 }
 
 //MARK: - Notifications
