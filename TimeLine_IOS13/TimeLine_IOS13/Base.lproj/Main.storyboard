@@ -336,6 +336,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="postImageView" destination="fuA-Ty-TUE" id="vat-dl-2Kl"/>
                                     <segue destination="5hv-ED-yhK" kind="show" identifier="toPostDetailFromSearch" id="7Bz-yV-K46"/>
                                 </connections>
                             </tableViewCell>

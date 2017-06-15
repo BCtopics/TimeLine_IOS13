@@ -58,7 +58,7 @@ class PostListTableViewController: UITableViewController, UISearchResultsUpdatin
     
     private func setUpSearchController() {
         
-        let resultsController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SearchResultsTableViewController")
+        resultsController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SearchResultsTableViewController") as? SearchResultsTableViewController
         
         searchController = UISearchController(searchResultsController: resultsController)
         searchController?.searchResultsUpdater = self
@@ -71,19 +71,20 @@ class PostListTableViewController: UITableViewController, UISearchResultsUpdatin
     
     func updateSearchResults(for searchController: UISearchController) {
         
-        if let resultsViewController = searchController.searchResultsController as? SearchResultsTableViewController,
-            let searchTerm = searchController.searchBar.text?.lowercased() {
+//        if let resultsViewController = searchController.searchResultsController as? SearchResultsTableViewController,
+        if let searchTerm = searchController.searchBar.text?.lowercased() {
             
             let posts = PostController.shared.posts
             let filteredPosts = posts.filter { $0.matches(searchTerm: searchTerm) }.map { $0 as SearchableRecord }
-            resultsViewController.resultsArray = filteredPosts
-            resultsViewController.tableView.reloadData()
+            resultsController?.resultsArray = filteredPosts
+            resultsController?.tableView.reloadData()
         }
     }
     
     //MARK: - Properties
     
     var searchController: UISearchController?
+    var resultsController: SearchResultsTableViewController?
     
     // MARK: - Navigation
 

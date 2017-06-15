@@ -17,7 +17,7 @@ class PostTableViewCell: UITableViewCell {
     }
     
     func updateViews() {
-        guard let post = post else { return }
+        guard let post = post, postImageView != nil else { return }
         self.postImageView.image = post.photo
     }
     
