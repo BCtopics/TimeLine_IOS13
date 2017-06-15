@@ -13,6 +13,7 @@ class PostListTableViewController: UITableViewController, UISearchResultsUpdatin
     override func viewDidLoad() {
         super.viewDidLoad()
         self.requestFullSync()
+        setUpSearchController()
         
         let nc = NotificationCenter.default
         nc.addObserver(self, selector: #selector(refresh), name: PostController.PostsChangedNotification, object: nil)
