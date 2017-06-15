@@ -68,6 +68,8 @@ extension CKRecord {
         self[Comment.kTimestamp] = comment.timestamp as CKRecordValue?
         self[Comment.kText] = comment.text as CKRecordValue?
         self[Comment.kPost] = CKReference(recordID: postRecordID, action: .deleteSelf)
+        
+        comment.cloudKitRecordID = recordID
     }
 }
 

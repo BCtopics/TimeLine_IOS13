@@ -15,7 +15,7 @@ class Post: CloudKitSyncable {
     
     static let kTimestamp = "timestamp"
     static let kPhotoData = "photoData"
-    static let kType = "post"
+    static let kType = "Post"
     
     //MARK: - Internal Properties
     
@@ -51,7 +51,7 @@ class Post: CloudKitSyncable {
         
         let photoData = try? Data(contentsOf: photoAsset.fileURL)
         self.init(photoData: photoData, timestamp: timestamp)
-        cloudKitRecordID = record.recordID
+        self.cloudKitRecordID = record.recordID
     }
 }
 

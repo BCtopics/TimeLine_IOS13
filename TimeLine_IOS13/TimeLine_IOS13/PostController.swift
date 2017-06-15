@@ -112,7 +112,9 @@ class PostController {
         
         // Get the CKReferences of already fetched posts, this way we aren't fetching anything we don't need to
         var refExcluded = [CKReference]()
-        refExcluded = self.syncedRecordsOf(type: type).flatMap { $0.cloudKitReference }
+        let syncedRecords = self.syncedRecordsOf(type: type)
+        
+        refExcluded = syncedRecords.flatMap({ $0.cloudKitReference })
         
         // Create predicate for FetchRequest
         var predicate: NSPredicate!
@@ -129,6 +131,7 @@ class PostController {
             case Post.kType:
                 if let post = Post(record: record) {
                     self.posts.append(post)
+                    post.cloudKitRecordID = record.recordID
                 }
             case Comment.kType:
                 guard let postReference = record[Comment.kPost] as? CKReference,
@@ -137,6 +140,8 @@ class PostController {
                 let post = self.posts[postIndex]
                 post.comments.append(comment)
                 comment.post = post
+                
+                comment.cloudKitRecordID = record.recordID
             default: return
                 }
             
