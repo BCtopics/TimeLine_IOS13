@@ -17,6 +17,7 @@ class PostController {
         self.peformFullSync {
             //FIXME: - Get rid of this empty area.
         }
+        self.subscribeToNewPosts()
     }
     
     //MARK: - Shared Instances
@@ -248,6 +249,22 @@ class PostController {
         }
         
     }
+ 
+    //MARK: - CKSubscriptions
+    
+    func subscribeToNewPosts(completion: @escaping ((_ success: Bool, _ error: Error?) -> Void) = { _,_ in }) {
+        
+        // Subscribe to all posts
+        let allPredicate = NSPredicate(value: true)
+        
+        cloudKitManager.subscribe(Post.kType, predicate: allPredicate, subscriptionID: "allPosts", contentAvailable: true, options: .firesOnRecordCreation) { (sub, error) in
+            
+            let success = sub != nil
+            completion(success, error)
+            
+        }
+    }
+    
     
 }
 
