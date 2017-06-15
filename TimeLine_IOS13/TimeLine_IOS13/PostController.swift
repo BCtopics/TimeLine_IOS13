@@ -252,6 +252,7 @@ class PostController {
  
     //MARK: - CKSubscriptions
     
+    // Subscribe to all Posts
     func subscribeToNewPosts(completion: @escaping ((_ success: Bool, _ error: Error?) -> Void) = { _,_ in }) {
         
         // Subscribe to all posts
@@ -260,6 +261,23 @@ class PostController {
         cloudKitManager.subscribe(Post.kType, predicate: allPredicate, subscriptionID: "allPosts", contentAvailable: true, options: .firesOnRecordCreation) { (sub, error) in
             
             let success = sub != nil
+            completion(success, error)
+            
+        }
+    }
+    
+    // Subscribe to comments with a given post
+    func addSubscriptionTo(commentsForPost post: Post,
+                           alertBody: String?,
+                           completion: @escaping ((_ success: Bool, _ error: Error?) -> Void) = { _,_ in }) {
+        
+        guard let recordID = post.cloudKitRecordID else { fatalError("Unable to create CloudKit reference for subscription.") }
+        
+        let predicate = NSPredicate(format: "post == %@", argumentArray: [recordID])
+        
+        cloudKitManager.subscribe(Comment.kType, predicate: predicate, subscriptionID: recordID.recordName, contentAvailable: true, alertBody: alertBody, desiredKeys: [Comment.kText, Comment.kPost], options: .firesOnRecordCreation) { (subscription, error) in
+            
+            let success = subscription != nil
             completion(success, error)
             
         }
