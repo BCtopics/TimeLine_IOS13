@@ -40,6 +40,9 @@ class PostDetailTableViewController: UITableViewController {
     
     //MARK: - IBOutlets
     
+    @IBOutlet weak var commentPostButton: UIBarButtonItem!
+    @IBOutlet weak var sharePostButton: UIBarButtonItem!
+    @IBOutlet weak var followPostButton: UIBarButtonItem!
     @IBOutlet weak var postImageView: UIImageView!
     
     //MARK: - IBActions
@@ -85,8 +88,10 @@ class PostDetailTableViewController: UITableViewController {
     
     @IBAction func followButtonTapped(_ sender: Any) {
         
-        
-        
+        guard let post = post else { return }
+        PostController.shared.toggleSubscriptionTo(commentsForPost: post) { (_, _, _) in
+            self.updateViews()
+        }
     }
     
     
@@ -97,6 +102,13 @@ class PostDetailTableViewController: UITableViewController {
         guard let post = post else { return }
         postImageView.image = post.photo
         self.tableView.reloadData()
+        PostController.shared.checkSubscriptionTo(commentsForPost: post) { (subscribed) in
+            
+            DispatchQueue.main.async {
+                
+                self.followPostButton.title = subscribed ? "Unfollow Post" : "Follow Post"
+            }
+        }
     }
 
     // MARK: - Table view data source

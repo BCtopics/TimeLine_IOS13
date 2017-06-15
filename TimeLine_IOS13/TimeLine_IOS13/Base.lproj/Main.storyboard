@@ -56,6 +56,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="KIP-Bt-5Bz">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <connections>
                             <action selector="refreshPulled:" destination="MzR-Bu-i3w" eventType="valueChanged" id="8Lz-8X-AHB"/>
@@ -189,7 +190,10 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Post Detail" id="nUT-gw-PvX"/>
                     <connections>
+                        <outlet property="commentPostButton" destination="NSH-L2-xGr" id="yCe-8E-Mlj"/>
+                        <outlet property="followPostButton" destination="V9W-hz-WeH" id="3s1-qh-OMg"/>
                         <outlet property="postImageView" destination="PW0-lT-KaD" id="1PO-Qj-N0c"/>
+                        <outlet property="sharePostButton" destination="BgC-KC-4HA" id="QY5-c2-9Ui"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gE9-rB-R19" userLabel="First Responder" sceneMemberID="firstResponder"/>

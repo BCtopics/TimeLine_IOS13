@@ -320,6 +320,21 @@ class PostController {
             }
         }
     }
+    
+    // Check for subscription
+    func checkSubscriptionTo(commentsForPost post: Post, completion: @escaping ((_ subscribed: Bool) -> Void) = { _ in }) {
+        
+        guard let subscriptionID = post.cloudKitRecordID?.recordName else {
+            completion(false)
+            return
+        }
+        
+        cloudKitManager.fetchSubscription(subscriptionID) { (subscription, error) in
+            let subscribed = subscription != nil
+            completion(subscribed)
+        }
+    }
+
 }
 
 //MARK: - Notifications
