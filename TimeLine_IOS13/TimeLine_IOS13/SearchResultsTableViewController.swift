@@ -26,8 +26,9 @@ class SearchResultsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "searchPostCell", for: indexPath) as? PostTableViewCell else { return UITableViewCell() }
-
-        guard let post = resultsArray[indexPath.row] as? Post else { return UITableViewCell() }
+        
+       guard let post = resultsArray[indexPath.row] as? Post else { return UITableViewCell() }
+//        let post = PostController.shared.posts[indexPath.row]
         cell.post = post
 
         return cell
